@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: kanban-backend
+    runtime: php
+    plan: free
+    buildCommand: composer install && php artisan migrate --force && php artisan config:cache && php artisan route:cache
+    startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
