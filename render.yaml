@@ -1,10 +1,12 @@
 services:
   - type: web
     name: kanban-backend
-    env: php
+    env: docker
     plan: free
-    buildCommand: cd backend && composer install && php artisan migrate --force && php artisan config:cache && php artisan route:cache
-    startCommand: cd backend && php artisan serve --host=0.0.0.0 --port=$PORT
+    root: backend
+    dockerfilePath: backend/Dockerfile
+    buildCommand: docker build -t kanban-backend .
+    startCommand: docker run -p 8000:8000 kanban-backend
     envVars:
       - key: APP_ENV
         value: production
