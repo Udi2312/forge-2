@@ -3,10 +3,7 @@ services:
     name: kanban-backend
     env: docker
     plan: free
-    root: backend
     dockerfilePath: backend/Dockerfile
-    buildCommand: docker build -t kanban-backend .
-    startCommand: docker run -p 8000:8000 kanban-backend
     envVars:
       - key: APP_ENV
         value: production
