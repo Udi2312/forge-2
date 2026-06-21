@@ -10,7 +10,7 @@ export default defineConfig({
       // Proxy all /api requests to the Laravel backend.
       // Laravel runs on http://127.0.0.1:8000 via `php artisan serve`.
       '/api': {
-        target: 'http://127.0.0.1:8000',
+        target: 'https://kanban-backend-lj6v.onrender.com/api',
         changeOrigin: true,
       },
     },
