@@ -5,7 +5,13 @@
  *  - Laravel resources wrap payloads as `{ data: ... }`. We unwrap that automatically.
  *  - Errors are normalized to an `ApiError` with `status`, `message`, and (when applicable) `errors` map.
  */
-const BASE = import.meta.env.VITE_API_BASE || '/api'
+function normalizeBase(base) {
+  if (!base) return '/api'
+  const normalized = base.replace(/\/$/, '')
+  return normalized.endsWith('/api') ? normalized : `${normalized}/api`
+}
+
+const BASE = normalizeBase(import.meta.env.VITE_API_BASE)
 
 export class ApiError extends Error {
   constructor({ status, message, errors }) {
